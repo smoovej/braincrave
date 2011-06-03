@@ -1,0 +1,5 @@
+2007,San Francisco,Summer,Kiva,kiva
+2007,San Francisco,Summer,Facebook,facebook
+2008,Boulder,Winter,Google,google
+2008,Boulder,Winter,Tech Stars,techstars
+2008,Boulder,Winter,Moveable Type,moveable-type

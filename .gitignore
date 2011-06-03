@@ -1,0 +1,19 @@
+kivacloud
+kivacloud/*
+
+mixtape/songs/*
+mixtape/old_songs/*
+
+# ignore uploaded images
+bimages/*
+!.gitignore
+
+stache
+stache/*
+
+config.php
+
+.svn
+.svn/*
+
+*~

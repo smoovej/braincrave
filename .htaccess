@@ -1,0 +1,15 @@
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+# Don't list contents of directories
+#Options +Indexes
+IndexIgnore */*
+
+# Stop Hotlinking
+#RewriteEngine on
+#RewriteCond %{HTTP_REFERER} !^$
+#RewriteCond %{HTTP_REFERER} !^http://(www.)?braincrave.org/.*$ [NC]
+#RewriteRule .(gif|jpg|png|bmp)$ - [F]
+#RewriteRule .(gif|jpg|png|bmp)$ http://www.braincrave.org/images/stealing.gif [R,L]

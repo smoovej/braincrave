@@ -1,0 +1,143 @@
+* {
+font-family: sans-serif;
+}
+
+#Upload {
+	width: 25em;
+	margin: 1em auto;
+	border:1px solid #bbb;
+	color: #333;
+	background:#ffd;
+}
+
+#upload input {
+	font-family:  verdana, sans-serif;
+}
+			
+#Upload h1{
+	font: 1.4em bold verdana, sans-serif;
+	margin: 0;
+	padding:1em 0;
+	text-align:center;
+}
+#Upload label{
+	float: left;
+	width: 7em;
+}
+		
+#Upload p {
+	 clear: both;
+}		
+
+.red{
+	color:red;
+}
+
+/* Principia stuff */
+.theorem {
+	padding-left: 20px;
+}
+
+/* Twitter stuff */
+.twitter_container{
+
+color:#444;
+font-size:12px;
+width:300px;
+margin: 0 auto;
+
+}
+.twitter_container a{
+
+color:#0066CC;
+font-weight:bold;
+
+}
+.twitter_status{
+
+height:60px;
+padding:6px;
+border-bottom:solid 1px #DEDEDE;
+
+}
+.twitter_image{
+
+float:left;
+margin-right:14px;
+border:solid 2px #DEDEDE;
+width:50px;
+height:50px;
+
+}
+.twitter_posted_at{
+
+font-size:11px;
+padding-top:4px;
+color:#999;
+
+}
+
+.ok{ color:#999; }
+.watch{ color:green; }
+.warning{ color: orange;}
+.error{ color: red;}
+
+/* IRC Stuff - for converting Colloquy transcript xml to css/html*/
+
+.chat {
+	padding:20px;
+	background: #eee;
+	border-bottom: 2px dotted #666;
+}
+
+.chat1 {
+	padding:20px;
+	border-bottom: 2px dotted #666;
+}
+
+log {
+  font-family: sans-serif;
+}
+envelope {
+  display: block;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+message {
+  display: block;
+  margin-bottom: 2px;
+}
+event {
+  font-size: small;
+  color: #ccc;
+}
+who {
+  display: none;
+}
+sender {
+  display: block;
+  color: #900;
+  font-style: italic;
+  margin: 2px 0 1px 0;
+  padding: 1px 0 1px 0;
+}
+sender[hostmask*="smoovej"] {
+  color: #006600;
+}
+sender[hostmask*="jon"] {
+  color: orange;
+}
+sender[hostmask*="zvi"] {
+  color: red;
+}
+sender[hostmask*="sam"] {
+  color: blue;
+}
+sender:after {
+  content: ":";
+}
+envelope message {
+  border-left: 2px dotted #666;
+  margin: 0 0 0 3px;
+  padding: 1px 0 1px 15px;
+}
