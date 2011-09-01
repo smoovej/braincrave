@@ -27,7 +27,20 @@ font-family: sans-serif;
 		
 #Upload p {
 	 clear: both;
-}		
+}	
+
+.comments {
+	/*display: none;*/
+	width: 50%;
+	align: center;
+	margin-top: 15px;
+	padding: 5px 20px 5px 20px;	
+	border: 1px solid #ccc;
+	background-color: #eee;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
 
 .red{
 	color:red;

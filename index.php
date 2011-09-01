@@ -22,7 +22,6 @@
 		<div align="center">
 			<span style="font-size: 48px">BRAINCRAVE</span>
 			<br/>
-<img src="img/stache.jpg" width="100"/><br/>
 			<?php 
 				if (isset($_REQUEST['success'])) {
 					echo '<br/><span id="success" style="color:red; padding:20px; font-size: 24px;">Absorbed</span><br/>';
@@ -84,41 +83,33 @@ $media = $db->get_row($row, 'MYSQL_ASSOC');
 			<div style="padding:30px;">
 				<a href="javascript://" id="toggle_upload_form">The collective values your contribution</a>
 				<div id="upload_form">
+					<div id="disqus_thread" class="comments"></div>
+						<script type="text/javascript">
+							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+							var disqus_shortname = 'braincrave'; // required: replace example with your forum shortname
+							var disqus_url = 'http://www.braincrave.org?id=<?php echo $image_id; ?>';
+							/* * * DON'T EDIT BELOW THIS LINE * * */
+							(function() {
+								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+								dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+							})();
+						</script>
+						<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 					<form id="Upload" action="add_image.php" enctype="multipart/form-data" method="post">
-				            <input type="hidden" name="MAX_FILE_SIZE" value="300000000">
-                                                <p>
-                                            Your Name: <input id="username" type="text" name="username">
-                                                </p>
-			<hr/>
-			<p>
-			  File: <input id="file" type="file" name="file">
-			</p>
-			<p>- OR -</p>
-			<p>
-			Youtoob URL: <input id="youtube_url" type="text" name="youtube_url"/>
-			</p>
-				        <p>
-				            <input id="submit" type="image" name="submit" src="img/do_it.png" value="DO IT">
-				        </p>
+						<p><span style="font-weight: bold; font-size: 1.2em; padding-bottom: 15px;">Add Some Bad</span></p>
+				        <input type="hidden" name="MAX_FILE_SIZE" value="300000000">
+                        <p>Your Name: <input id="username" type="text" name="username"></p>
+						<hr/>
+						<p>File: <input id="file" type="file" name="file"></p>
+						<p>- OR -</p>
+						<p>Youtoob URL: <input id="youtube_url" type="text" name="youtube_url"/></p>
+				        <p><input id="submit" type="image" name="submit" src="img/do_it.png" value="DO IT"></p>
 					</form>
-					<!--
-					<br/><center><font color="red">THIS CHANGES EVERYTHING</font></center>
-					<form id="Upload" action="add_zip.php" enctype="multipart/form-data" method="post">
-				            <input type="hidden" name="MAX_FILE_SIZE" value="300000000">
-				        <p>
-				            Zip File: <input id="file" type="file" name="zipfile">
-				        </p>
-						<p>
-				            Your Name: <input id="username" type="text" name="username">
-						</p>
-				        <p>
-				            <input id="submit" type="image" name="submit" src="img/do_it.png" value="DO IT">
-				        </p>
-					</form>
-					-->
+										</div>
+					
 				</div>
-			</div>
-		</div>	
+			</div>	
 			<br/><hr/><br/><br/>
 <table width="100%">	
 		<tr valign="top">
@@ -140,60 +131,52 @@ lt="maesto's Profile Page" /></a>
 			</td>
 			
 			<td width="33%">
-			    <div align="center">
-			                <span style="font-size: 1.2em">You Type We Tweet</span><br/>
-					<form id="tweet_form" action="send_tweet.php" method="post">
-						<p>
-				            <textarea id="tweet" name="tweet" rows="3" cols="50"></textarea>
-			                    <br/>
-							<div id="textcounter" style="font-family:Georgia; font-size: 1.5em;"></div>
-						</p>
-			                    Password:<br/><input id="password" name="password" type="password"/>
-			                 <p>
-				            <input id="submit" type="image" name="submit" src="img/tweet_it.png" value="TWEET IT">
-				        </p>
-					</form>
-			    </div>
+				<div align="center">
+					<span style="font-size: 1.2em; padding-bottom: 15px;">Who Cares?</span><br/><br/>
+				    <script type="text/javascript" src="http://braincrave.disqus.com/combination_widget.js?num_items=10&hide_mods=0&color=grey&default_tab=recent&excerpt_length=200"></script>
+				</div>
 			</td>
 			
 			<td width="33%">
 				<div align="center">
-			                <span style="font-size: 1.2em">Recently Twad</span><br/>
+			                <span style="font-size: 1.2em; padding-bottom: 15px;">Recently Twad</span><br/><br/>
 					<div class="twitter_container">
-			 <?php
-						// require the twitter library
-						require "twitter/twitter.lib.php";
-
-						// your twitter username and password
-						$username = "braincrave";
-						$password = "kivar0cks";
-
-						// initialize the twitter class
-						$twitter = new Twitter($username, $password);
-
-						// fetch public timeline in xml format
-						$xml = $twitter->getFriendsTimeline(array('count'=>40));
-
-						$twitter_status = new SimpleXMLElement($xml);
-
-						foreach($twitter_status->status as $status){
-						  if (($status->user->name == 'BRAINCRAVE') && (strpos($status->text, 'tinyurl') === false )) {
-						    continue;
-						  } else {
-						    echo '<br/>';
-						    echo '<div style="padding-bottom: 10px;">';
-						    foreach($status->user as $user){
-						      echo '<img src="'.$user->profile_image_url.'" class="twitter_image">';
-						      echo '<a href="http://www.twitter.com/'.$user->name.'">'.$user->name.'</a>: ';
-						    }
-						    echo $status->text;
-						    echo '<br/>';
-						    echo '<div class="twitter_posted_at">Posted at:'.$status->created_at.'</div>';
-						    echo '</div><br/>';
+						<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+						<script>
+						new TWTR.Widget({
+						  version: 2,
+						  type: 'list',
+						  rpp: 30,
+						  interval: 30000,
+						  title: 'Recently twad by',
+						  subject: 'the collective',
+						  width: 'auto',
+						  height: 300,
+						  theme: {
+							shell: {
+							  background: '#000000',
+							  color: '#ffffff'
+							},
+							tweets: {
+							  background: '#ffffff',
+							  color: '#444444',
+							  links: '#4065c2'
+							}
+						  },
+						  features: {
+							scrollbar: true,
+							loop: false,
+							live: true,
+							hashtags: true,
+							timestamp: true,
+							avatars: true,
+							behavior: 'all'
 						  }
-						}
-?>
+						}).render().setList('braincrave', 'cravers').start();
+						</script>
 					</div>
+					<br/>
+					Want to get in on this shnazzy shnit?<br/>Follow <a href="http://twitter.com/braincrave">@braincrave</a>.
 				</div>
 			</td>
 </table>

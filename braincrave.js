@@ -94,7 +94,7 @@ $(document).ready(function() {
 
   $('#upload_form').hide(); 
   $('#toggle_upload_form').click(function() {
-    $(this).next().slideToggle('slow');
+    $("#upload_form").slideToggle('slow');
   });
 
 
