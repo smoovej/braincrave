@@ -14,8 +14,9 @@
 	<head>
 	<title>A SERIES OF TUBES</title>
 	<link rel="stylesheet" type="text/css" href="braincrave.css" />
-	<script type="text/javascript" src="jquery.js"></script>
+	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="braincrave.js"></script>
+	<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
 	</head>
 
 	<body>
@@ -67,15 +68,18 @@ $media = $db->get_row($row, 'MYSQL_ASSOC');
 			?>
 			<table><tr>
 				<td valign="top"><span style="font-size: 3em"><a href="http://www.braincrave.org?id=<?php echo $prev_img_id; ?>">&lArr;</a></span>&nbsp;&nbsp;&nbsp;</td>
-				<?php
-				$youtube_url = $media['youtube_url'];
-				if (empty($youtube_url)) {
-				  // display image
-				  echo "<td><a href=\"http://www.braincrave.org\"><img border=\"0\" src=\"$image_url\"></a></td>";
-				} else {
-				  // we've got a video
-				  echo '<object><param name="movie" value="http://www.youtube.com/v/'.$youtube_url.'&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/'.$youtube_url.'&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>';
-				} ?>
+				<div id="the_shit">
+					<?php
+					$youtube_url = $media['youtube_url'];
+					if (empty($youtube_url)) {
+					  // display image
+					  echo "<td><a href=\"http://www.braincrave.org\"><img border=\"0\" src=\"$image_url\"></a></td>";
+					} else {
+					  // we've got a video
+					  $embedly_key = "9d947f12d4e411e0b41d4040d3dc5c07";
+					  echo '<object><param name="movie" value="http://www.youtube.com/v/'.$youtube_url.'&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/'.$youtube_url.'&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>';
+					} ?>
+				</div>
 				<td valign="top">&nbsp;&nbsp;&nbsp;<span style="font-size: 3em"><a href="http://www.braincrave.org?id=<?php echo $next_img_id; ?>">&rArr;</a></span></td>
 			</tr></table>
 			<br/>
@@ -114,15 +118,12 @@ $media = $db->get_row($row, 'MYSQL_ASSOC');
 <table width="100%">	
 		<tr valign="top">
 			<td width="33%">
-				<div align="center">
-					<a href="principia.html"><img width="400" border="0" src="http://www.braincrave.org/img/principia.png"/></a>
-				</div>
-                        <div align="center" style="padding-top: 100px;">
+                        <div align="center" >
                         <?php
                         $styles = array('Arghavan','mixtape02','milkmandan','WarwickPunksoc','yehya','NGTank','Headache','robbie','Handsandstainv2','KCwhiteiPod','LOST','SlashTop5');
 $random_key = array_rand($styles);
                         ?>
-Recently reverberating in the Braincave:
+<span style="font-size: 1.2em; padding-bottom: 15px;">Recently reverberating in the Braincave:</span>
 <br/><br/>
 <a href="http://www.last.fm/user/braincrave/?chartstyle=<?php echo $styles[ $random_key ]; ?>"><img src="http://imagegen.last.fm/<?php echo $styles[ $random_key ]; ?>/recenttracks/braincrave.gif" border="0" a\
 lt="maesto's Profile Page" /></a>
@@ -176,11 +177,15 @@ lt="maesto's Profile Page" /></a>
 						</script>
 					</div>
 					<br/>
-					Want to get in on this shnazzy shnit?<br/>Follow <a href="http://twitter.com/braincrave">@braincrave</a>.
+					Want to get in on this shnazzy shnit?<br/>Tweet your desires to <a href="http://twitter.com/braincrave">@braincrave</a>.
 				</div>
 			</td>
 </table>
 <hr/>
+<div align="center">
+	<a href="principia.html"><img width="400" border="0" src="http://www.braincrave.org/img/principia.png"/></a>
+</div>
+
 <div align="center" style="padding-top: 20px;">
 	<a href="http://www.braincrave.org/mixtape"><img src="img/dancing_kid.gif" border="0"/></a>
 	<div style="padding-top:20px;">
