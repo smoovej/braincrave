@@ -2,12 +2,32 @@
 font-family: sans-serif;
 }
 
+.video {
+	align: center;
+	width: 50%;
+}
+
 #Upload {
 	width: 25em;
 	margin: 1em auto;
 	border:1px solid #bbb;
 	color: #333;
 	background:#ffd;
+	margin: 20px;
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+    /*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+    -moz-box-shadow: 1px 1px 6px #000000;
+    -webkit-box-shadow: 1px 1px 6px #000000;
+    box-shadow: 1px 1px 6px #000000;
+    filter: progid:DXImageTransform.Microsoft.Shadow(strength = 1, direction = 135, color = '#000000');
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(strength=1, Direction=135, Color='#000000')";
+    /*Shadows look very different in IE (Only cardinal directions supported)*/
+    /*INNER ELEMENTS MUST NOT BREAK THIS ELEMENTS BOUNDARIES*/
+    /*Element should have a background-color*/
+    /*All filters must be placed together*/
+    /*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 
 #upload input {

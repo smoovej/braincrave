@@ -22,9 +22,8 @@ if (!empty($_REQUEST['youtube_url'])) {
 
   // cram the video into the db
   $youtube_url = mysql_real_escape_string($_REQUEST['youtube_url']);
-  $youtube_id  = get_youtubeid( $youtube_url );
   $create_time = empty($create_time) ? time() : $create_time;
-  $video_data = array('youtube_url' => $youtube_id
+  $video_data = array('youtube_url' => $youtube_url
 		      , 'type' => 'video'
 			, 'user_id' => $user_id
 			, 'create_time' => time());

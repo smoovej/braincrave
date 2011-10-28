@@ -77,8 +77,12 @@ $media = $db->get_row($row, 'MYSQL_ASSOC');
 					} else {
 					  // we've got a video
 					  $embedly_key = "9d947f12d4e411e0b41d4040d3dc5c07";
-					  echo '<object><param name="movie" value="http://www.youtube.com/v/'.$youtube_url.'&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/'.$youtube_url.'&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>';
-					} ?>
+					  ?>
+
+					  <div class="video">
+					  	<a href="<?php echo $youtube_url;?>">Fucking Braincraves, how do they work?</a>
+					  </div>
+					<?php } ?>
 				</div>
 				<td valign="top">&nbsp;&nbsp;&nbsp;<span style="font-size: 3em"><a href="http://www.braincrave.org?id=<?php echo $next_img_id; ?>">&rArr;</a></span></td>
 			</tr></table>
@@ -87,32 +91,18 @@ $media = $db->get_row($row, 'MYSQL_ASSOC');
 			<div style="padding:30px;">
 				<a href="javascript://" id="toggle_upload_form">The collective values your contribution</a>
 				<div id="upload_form">
-					<div id="disqus_thread" class="comments"></div>
-						<script type="text/javascript">
-							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-							var disqus_shortname = 'braincrave'; // required: replace example with your forum shortname
-							var disqus_url = 'http://www.braincrave.org?id=<?php echo $image_id; ?>';
-							/* * * DON'T EDIT BELOW THIS LINE * * */
-							(function() {
-								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-								dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-							})();
-						</script>
-						<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 					<form id="Upload" action="add_image.php" enctype="multipart/form-data" method="post">
-						<p><span style="font-weight: bold; font-size: 1.2em; padding-bottom: 15px;">Add Some Bad</span></p>
 				        <input type="hidden" name="MAX_FILE_SIZE" value="300000000">
                         <p>Your Name: <input id="username" type="text" name="username"></p>
 						<hr/>
 						<p>File: <input id="file" type="file" name="file"></p>
 						<p>- OR -</p>
-						<p>Youtoob URL: <input id="youtube_url" type="text" name="youtube_url"/></p>
+						<p>Tube Url: <input id="youtube_url" type="text" name="youtube_url"/></p>
+						<p><a style="font-size:.7em" href="http://embed.ly/providers">Which ultratubes can I use?</a></p>
 				        <p><input id="submit" type="image" name="submit" src="img/do_it.png" value="DO IT"></p>
 					</form>
-										</div>
-					
-				</div>
+				</div>	
+			</div>
 			</div>	
 			<br/><hr/><br/><br/>
 <table width="100%">	
@@ -129,13 +119,6 @@ $random_key = array_rand($styles);
 lt="maesto's Profile Page" /></a>
 </div>
 
-			</td>
-			
-			<td width="33%">
-				<div align="center">
-					<span style="font-size: 1.2em; padding-bottom: 15px;">Who Cares?</span><br/><br/>
-				    <script type="text/javascript" src="http://braincrave.disqus.com/combination_widget.js?num_items=10&hide_mods=0&color=grey&default_tab=recent&excerpt_length=200"></script>
-				</div>
 			</td>
 			
 			<td width="33%">
