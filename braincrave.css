@@ -2,9 +2,17 @@
 font-family: sans-serif;
 }
 
+.braincrave_title {
+	font-size: 48px;
+}
+
+.braincrave_title a {
+	text-decoration: none;
+}
+
 .video {
 	align: center;
-	width: 50%;
+	width: 75%;
 }
 
 #Upload {

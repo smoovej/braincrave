@@ -21,7 +21,42 @@
 
 	<body>
 		<div align="center">
-			<span style="font-size: 48px">BRAINCRAVE</span>
+			<?php 
+				if (!empty($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
+				  $image_id = $_REQUEST['id'];			  
+				  $row = $db->select("SELECT * FROM images WHERE id = $image_id LIMIT 1");
+				} else {
+				  $row = $db->select("SELECT * FROM images ORDER BY RAND() LIMIT 1");
+				}
+
+				$media = $db->get_row($row, 'MYSQL_ASSOC');
+				// we've got an image
+				$md5 = $media['md5'];
+			  
+				$sql = "SELECT username FROM users u WHERE id = {$media['user_id']};";
+				$poster = $db->select_one($sql);
+				
+				$image_id = $media['id'];
+				$image_type = $media['type'];
+				$image_url = "bimages/$md5.$image_type"; 
+				$r = $db->select("SELECT id, md5, youtube_url, type FROM images WHERE id < $image_id ORDER BY id DESC LIMIT 1 ");
+				$row = $db->get_row($r, 'MYSQL_ASSOC');
+				$prev_img = $row['md5'] . '.' . $row['type'];
+	
+				$prev_img_id = $db->select_one("SELECT id FROM images WHERE id < $image_id ORDER BY id DESC LIMIT 1");
+				$next_img_id = $db->select_one("SELECT id FROM images WHERE id > $image_id ORDER BY id ASC LIMIT 1");
+				$most_recent_upload = $db->select_one("SELECT id FROM images ORDER BY id DESC LIMIT 1");
+				
+				$r = $db->select("SELECT id, md5, youtube_url, type FROM images WHERE id > $image_id ORDER BY id ASC LIMIT 1 ");
+				$row = $db->get_row($r, 'MYSQL_ASSOC');
+				$next_img = 'bimages/' . $row['md5'] . '.' . $row['type'];
+			  
+			?>
+			<div class="braincrave_title">
+				<a href="http://www.braincrave.org?id=<?php echo $prev_img_id; ?>">&larr;</a>&nbsp;&nbsp;&nbsp;
+				BRAINCRAVE<a href="http://www.braincrave.org?id=<?php echo $most_recent_upload; ?>">.</a>
+				&nbsp;&nbsp;&nbsp;<a href="http://www.braincrave.org?id=<?php echo $next_img_id; ?>">&rarr;</a>
+			</div>
 			<br/>
 			<?php 
 				if (isset($_REQUEST['success'])) {
@@ -31,61 +66,20 @@
 				}
 			?>
 			<br/>
-			<?php 
-			if (!empty($_REQUEST['id']) && is_numeric($_REQUEST['id'])) {
-			  $image_id = $_REQUEST['id'];			  
-			  $row = $db->select("SELECT * FROM images WHERE id = $image_id LIMIT 1");
-			} else {
-			  $row = $db->select("SELECT * FROM images ORDER BY RAND() LIMIT 1");
-			}
-
-$media = $db->get_row($row, 'MYSQL_ASSOC');
-			  // we've got an image
-			  $md5 = $media['md5'];
-			  
-			  $sql = "SELECT username FROM users u WHERE id = {$media['user_id']};";
-			  $poster = $db->select_one($sql);
-				
-			    $r = $db->select("SELECT user_name, email FROM users");
-			    while ($row=$db->get_row($r, 'MYSQL_ASSOC')) {
-			      echo '<b>'.$row['user_name']."</b>'s email address is <b>".$row['email']."</b><br>";
-			    }
-			    
-			    $image_id = $media['id'];
-			    $image_type = $media['type'];
-			    $image_url = "bimages/$md5.$image_type"; 
-			    $r = $db->select("SELECT id, md5, youtube_url, type FROM images WHERE id < $image_id ORDER BY id DESC LIMIT 1 ");
-			    $row = $db->get_row($r, 'MYSQL_ASSOC');
-			    $prev_img = $row['md5'] . '.' . $row['type'];
-
-			    $prev_img_id = $db->select_one("SELECT id FROM images WHERE id < $image_id ORDER BY id DESC LIMIT 1");
-			    $next_img_id = $db->select_one("SELECT id FROM images WHERE id > $image_id ORDER BY id ASC LIMIT 1");
-			    
-			    $r = $db->select("SELECT id, md5, youtube_url, type FROM images WHERE id > $image_id ORDER BY id ASC LIMIT 1 ");
-			    $row = $db->get_row($r, 'MYSQL_ASSOC');
-			    $next_img = 'bimages/' . $row['md5'] . '.' . $row['type'];
-			  
-			?>
-			<table><tr>
-				<td valign="top"><span style="font-size: 3em"><a href="http://www.braincrave.org?id=<?php echo $prev_img_id; ?>">&lArr;</a></span>&nbsp;&nbsp;&nbsp;</td>
-				<div id="the_shit">
-					<?php
-					$youtube_url = $media['youtube_url'];
-					if (empty($youtube_url)) {
-					  // display image
-					  echo "<td><a href=\"http://www.braincrave.org\"><img border=\"0\" src=\"$image_url\"></a></td>";
-					} else {
-					  // we've got a video
-					  $embedly_key = "9d947f12d4e411e0b41d4040d3dc5c07";
-					  ?>
-
-					  <div class="video">
-					  	<a href="<?php echo $youtube_url;?>">Fucking Braincraves, how do they work?</a>
-					  </div>
-					<?php } ?>
-				</div>
-				<td valign="top">&nbsp;&nbsp;&nbsp;<span style="font-size: 3em"><a href="http://www.braincrave.org?id=<?php echo $next_img_id; ?>">&rArr;</a></span></td>
-			</tr></table>
+			<div id="the_shit">
+				<?php
+				$youtube_url = $media['youtube_url'];
+				if (empty($youtube_url)) {
+				  // display image
+				  echo "<a href=\"http://www.braincrave.org\"><img border=\"0\" src=\"$image_url\"></a>";
+				} else {
+				  // we've got a video
+				  ?>
+				  <div class="video">
+					<a href="<?php echo $youtube_url;?>">Fucking Braincraves, how do they work?</a>
+				  </div>
+				<?php } ?>
+			</div>
 			<br/>
 			<span style="font-size: .7em;">Blame <?php echo empty($poster) ? 'Braincrave' : $poster; ?> for <a href="http://www.braincrave.org?id=<?php echo $image_id; ?>"> this one</a>.</span>
 			<div style="padding:30px;">
