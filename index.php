@@ -87,12 +87,14 @@
 				<div id="upload_form">
 					<form id="Upload" action="add_image.php" enctype="multipart/form-data" method="post">
 				        <input type="hidden" name="MAX_FILE_SIZE" value="300000000">
+				       
                         <p>Your Name: <input id="username" type="text" name="username"></p>
 						<hr/>
 						<p>File: <input id="file" type="file" name="file"></p>
 						<p>- OR -</p>
 						<p>Tube Url: <input id="youtube_url" type="text" name="youtube_url"/></p>
 						<p><a style="font-size:.7em" href="http://embed.ly/providers">Which ultratubes can I use?</a></p>
+				  <p>Which is hotter, fire or ice? <input type="text" name="question"/>
 				        <p><input id="submit" type="image" name="submit" src="img/do_it.png" value="DO IT"></p>
 					</form>
 				</div>	

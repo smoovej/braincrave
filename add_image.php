@@ -3,8 +3,30 @@ print_r($_REQUEST);
 require_once('ImageStuffer.php');
 $stuffer = new ImageStuffer();
 
+function checkForSpam( ) {
+  $answer = $_REQUEST['question'];
+  if ($answer != 'fire') {
+    echo "Suck my ass, spammer.";
+    error_log("Stopped spammer on " . $_REQUEST['question']);
+    die();
+  }
+  $bullshit = array('http://www.flickr.com/people/');
+
+  foreach ($_REQUEST as $request_var) {
+    foreach ($bullshit as $spamstring) {
+      if (stristr($request_var, $spamstring)) {
+	  error_log("Stopped spammer on $request_var");
+	  echo "Hey Spammer!  Hope you get face cancer and die!";
+	  die();
+      }
+    }
+  }
+}
+
 if (!empty($_REQUEST['youtube_url'])) {
   require_once('db/db.class.php');
+
+  checkForSpam( );
 
   // Open the DB connection                                                                                                                                                                        
   $db = new db_class();
