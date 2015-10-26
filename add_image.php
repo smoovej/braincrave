@@ -66,7 +66,7 @@ if (!empty($_REQUEST['youtube_url'])) {
     
     // your twitter username and password                                       
     $username = "braincrave";
-    $password = "kivar0cks";
+    $password = "kevinr0cks";
     
     // initialize the twitter class                                            
     $twitter = new Twitter($username, $password);
